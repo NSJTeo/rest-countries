@@ -1,17 +1,21 @@
 <template>
   <Header />
+  <router-view />
 </template>
 
 <script>
 import Header from './components/Header.vue';
+import axios from 'axios';
+
 export default {
   name: 'App',
-  methods: {
-    logState() {
-      console.log(this.$store.state.darkModeOn);
-    },
-  },
+  methods: {},
   components: { Header },
+  mounted() {
+    axios.get('https://restcountries.com/v3.1/all').then((response) => {
+      console.log(response.data);
+    });
+  },
 };
 </script>
 
