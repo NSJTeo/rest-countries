@@ -6,25 +6,33 @@
         v-for="country in countries"
         class="country__container"
       >
-        <img :src="country.flags.svg" alt="" class="country__flag" />
-        <div class="country__text">
-          <h2 class="country__name">
-            {{ country.name.common }}
-          </h2>
-          <p class="country__info-container">
-            Population:
-            <span class="country__info">{{ country.population }}</span>
-          </p>
-          <p class="country__info-container">
-            Region: <span class="country__info">{{ country.region }}</span>
-          </p>
-          <p class="country__info-container">
-            Capital:
-            <span class="country__info">{{
-              (country.capital && country.capital[0]) || 'n/a'
-            }}</span>
-          </p>
-        </div>
+        <router-link
+          :to="{
+            name: 'Country',
+            params: { id: country.name.common.toLowerCase() },
+          }"
+          class="country__link"
+        >
+          <img :src="country.flags.svg" alt="" class="country__flag" />
+          <div class="country__text">
+            <h2 class="country__name">
+              {{ country.name.common }}
+            </h2>
+            <p class="country__info-container">
+              Population:
+              <span class="country__info">{{ country.population }}</span>
+            </p>
+            <p class="country__info-container">
+              Region: <span class="country__info">{{ country.region }}</span>
+            </p>
+            <p class="country__info-container">
+              Capital:
+              <span class="country__info">{{
+                (country.capital && country.capital[0]) || 'n/a'
+              }}</span>
+            </p>
+          </div>
+        </router-link>
       </li>
     </ul>
   </main>
@@ -67,6 +75,10 @@ main {
     padding-bottom: 46px;
     list-style: none;
     cursor: pointer;
+  }
+  &__link {
+    color: black;
+    text-decoration: none;
   }
   &__flag {
     width: 100%;
