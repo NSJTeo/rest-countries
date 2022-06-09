@@ -21,7 +21,9 @@ export const store = createStore({
     addCountries: async ({ commit }) => {
       console.log('getting countries');
       try {
-        const countries = await axios.get('https://restcountries.com/v3.1/all');
+        const response = await axios.get('https://restcountries.com/v3.1/all');
+        const { data: countries } = response;
+        console.log(countries);
         commit('addCountries', countries);
       } catch (err) {
         console.log(err.message);

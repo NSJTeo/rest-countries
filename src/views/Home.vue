@@ -1,9 +1,103 @@
 <template>
-  <main>Home</main>
+  <main>
+    <ul class="countries__container">
+      <li
+        :key="country.name"
+        v-for="country in countries"
+        class="country__container"
+      >
+        <img :src="country.flags.svg" alt="" class="country__flag" />
+        <div class="country__text">
+          <h2 class="country__name">
+            {{ country.name.common }}
+          </h2>
+          <p class="country__info-container">
+            Population:
+            <span class="country__info">{{ country.population }}</span>
+          </p>
+          <p class="country__info-container">
+            Region: <span class="country__info">{{ country.region }}</span>
+          </p>
+          <p class="country__info-container">
+            Capital:
+            <span class="country__info">{{
+              (country.capital && country.capital[0]) || 'n/a'
+            }}</span>
+          </p>
+        </div>
+      </li>
+    </ul>
+  </main>
 </template>
 
 <script>
 export default {
   name: 'Home',
+  computed: {
+    countries() {
+      return this.$store.state.countries;
+    },
+  },
 };
 </script>
+
+<style lang="scss">
+main {
+  background: hsl(0, 0%, 98%);
+  padding: 0 56px;
+}
+
+.countries {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 75px;
+    justify-content: center;
+  }
+}
+
+.country {
+  &__container {
+    /* margin: 0 auto; */
+    width: 264px;
+    /* margin-bottom: 40px; */
+    background: #ffffff;
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294384);
+    border-radius: 5px;
+    padding-bottom: 46px;
+    list-style: none;
+    cursor: pointer;
+  }
+  &__flag {
+    width: 100%;
+    margin-bottom: 24px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  &__text {
+    padding-left: 24px;
+  }
+  &__name {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 1rem;
+  }
+  &__info-container {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 0.5rem;
+    &:last-child {
+      margin: 0;
+    }
+  }
+  &__info {
+    font-weight: 300;
+  }
+}
+</style>
