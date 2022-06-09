@@ -1,8 +1,9 @@
 <template>
-  <div @click="logState">Hello World</div>
+  <Header />
 </template>
 
 <script>
+import Header from './components/Header.vue';
 export default {
   name: 'App',
   methods: {
@@ -10,6 +11,7 @@ export default {
       console.log(this.$store.state.darkModeOn);
     },
   },
+  components: { Header },
 };
 </script>
 

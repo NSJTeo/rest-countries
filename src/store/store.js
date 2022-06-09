@@ -8,5 +8,9 @@ export const store = createStore({
       selectedCountry: null,
     };
   },
-  mutations: {},
+  mutations: {
+    toggleDarkMode(state) {
+      state.darkModeOn = !state.darkModeOn;
+    },
+  },
 });
