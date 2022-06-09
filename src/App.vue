@@ -1,10 +1,15 @@
 <template>
-  <div>Hello World</div>
+  <div @click="logState">Hello World</div>
 </template>
 
 <script>
 export default {
   name: 'App',
+  methods: {
+    logState() {
+      console.log(this.$store.state.darkModeOn);
+    },
+  },
 };
 </script>
 
