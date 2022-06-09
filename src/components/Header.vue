@@ -21,7 +21,6 @@ export default {
   methods: {
     toggleDarkMode() {
       this.$store.commit('toggleDarkMode');
-      console.log(this.$store.state.darkModeOn);
     },
   },
 };

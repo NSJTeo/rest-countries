@@ -8,12 +8,6 @@ const routes = [
     name: 'Home',
     component: Home,
   },
-  // delete after
-  // {
-  //   path: '/country',
-  //   name: 'Country',
-  //   component: Country,
-  // },
   {
     path: '/country/:id',
     name: 'Country',
