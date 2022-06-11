@@ -10,9 +10,6 @@ export default {
   name: 'App',
   methods: {},
   components: { Header },
-  mounted() {
-    this.$store.dispatch('addCountries');
-  },
 };
 </script>
 

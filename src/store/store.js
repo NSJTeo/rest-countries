@@ -6,7 +6,7 @@ export const store = createStore({
     return {
       darkModeOn: false,
       countries: [],
-      selectedCountry: null,
+      country: null,
     };
   },
   mutations: {
@@ -16,15 +16,28 @@ export const store = createStore({
     addCountries(state, payload) {
       state.countries = payload;
     },
+    setCountry(state, payload) {
+      state.country = payload;
+    },
   },
   actions: {
     addCountries: async ({ commit }) => {
-      console.log('getting countries');
       try {
         const response = await axios.get('https://restcountries.com/v3.1/all');
         const { data: countries } = response;
-        console.log(countries);
         commit('addCountries', countries);
+      } catch (err) {
+        console.log(err.message);
+      }
+    },
+    getCountry: async ({ commit }, name) => {
+      try {
+        const { data } = await axios.get(
+          `https://restcountries.com/v3.1/name/${name}?fullText=true`
+        );
+        const [country] = data;
+        console.log(country);
+        commit('setCountry', country);
       } catch (err) {
         console.log(err.message);
       }

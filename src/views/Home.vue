@@ -46,10 +46,13 @@ export default {
       return this.$store.state.countries;
     },
   },
+  mounted() {
+    this.$store.dispatch('addCountries');
+  },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   background: hsl(0, 0%, 98%);
   padding: 0 56px;
@@ -66,9 +69,7 @@ main {
 
 .country {
   &__container {
-    /* margin: 0 auto; */
     width: 264px;
-    /* margin-bottom: 40px; */
     background: #ffffff;
     box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294384);
     border-radius: 5px;
